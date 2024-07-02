@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -19,9 +20,19 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $createPost = $request->validate([
+            'title' => 'required|max:25|string',
+            'description' => 'nullable|string',
+            'photo' => 'nullable',
+            'is_featured' => 'string',
+            'author' => 'string',
+        ]);
+
+        Post::create($createPost);
+        return redirect()->route('welcome')->with("message", "createPost  successful");
     }
 
     /**
