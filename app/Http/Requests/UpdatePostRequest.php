@@ -9,10 +9,6 @@ class UpdatePostRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,7 +18,11 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:255|string',
+            'description' => 'nullable|string',
+            'photo' => 'nullable|image|max:2048', // Adjust max file size as needed
+            'is_featured' => 'sometimes|boolean',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

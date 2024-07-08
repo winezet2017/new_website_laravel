@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'category_id' => Category::factory(),
             'title' => fake()->title(),
             'photo' => fake()->imageUrl(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->paragraph(150),
             'is_featured' => rand(0, 1)
 
         ];

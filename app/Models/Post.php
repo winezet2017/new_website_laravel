@@ -10,10 +10,10 @@ use Illuminate\Foundation\Auth\User;
 class Post extends Model
 {
     use HasFactory;
-    // protected $fillable = [
-    //     'user_id', 'category_id', 'title', 'photo',
-    //     'description', 'is_featured'
-    // ];
+    protected $fillable = [
+        'user_id', 'category_id', 'title', 'photo',
+        'description', 'is_featured'
+    ];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

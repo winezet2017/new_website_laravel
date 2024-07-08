@@ -38,6 +38,18 @@
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
 
+        <!-- Display User Info -->
+        {{-- <div>
+            <x-input-label for="info" :value="__('Info')" />
+            <x-text-area id="info" name="info" class="mt-1 block w-full rounded-lg" required
+                autofocus>{{ old('info', $user->info) }}</x-text-area>
+            <x-input-error class="mt-2" :messages="$errors->get('info')" />
+        </div> --}}
+        <div>
+            <x-input-label for="info" :value="__('Info')" />
+            <textarea name="info" class="w-full h-20 rounded-lg">{{ old('info', $user->info) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('info')" />
+        </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

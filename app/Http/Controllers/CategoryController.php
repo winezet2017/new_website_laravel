@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -38,6 +39,9 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        // return $category;
+        // $user=User::all();
+        return view('categories.show', compact('category'));
     }
 
     /**

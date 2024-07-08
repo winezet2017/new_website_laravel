@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-red-400 border-b border-gray-100 py-5 px-2 ">
+<nav x-data="{ open: false }" class="bg-red-500  border-gray-100 py-5 px-2 ">
     <!-- Primary Navigation Menu -->
     <div class="text-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -10,8 +10,8 @@
                     </a>
 
                     <a href="{{ route('posts.index') }}">
-                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                            <p class="text-lg font-bold text-white">Posts</p>
+                        <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                            <p class="text-lg font-bold text-white">Create Posts</p>
                         </x-nav-link>
                     </a>
 
@@ -29,7 +29,6 @@
                 </div> --}}
             </div>
             @guest
-
                 <div class="flex items-center gap-5 text-white">
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
@@ -66,7 +65,6 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

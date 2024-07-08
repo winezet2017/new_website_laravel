@@ -1,10 +1,13 @@
 <x-app-layout>
     <div class="shadow-md bg-white px-8 py-2">
 
-        @foreach ($categories as $item)
-            <span
-                class="inline-block py-1 m-1 rounded-lg bg-red-100 hover:bg-red-500 hover:text-white p-2 border-2 text-sm">{{ $item->name }}</span>
+        @foreach ($categories as $category)
+            <a href="{{ route('categories.show', $category->id) }}"
+                class="inline-block py-1 m-1 rounded-lg bg-red-100 hover:bg-red-500 hover:text-white p-2 border-2 text-sm">{{ $category->name }}</a>
         @endforeach
+        {{-- <div class="mt-4 text-center">
+            {{ $categories->links() }}
+        </div> --}}
 
     </div>
     <div class="grid md:grid-cols-4 min-h-screen p-10">
@@ -13,23 +16,31 @@
                 <div class=" bg-gray-200 mx-10 mb-10 shadow-lg">
                     <div class="flex gap-5 px-20 py-10 rounded m-30 justify-center items-center ">
                         <div class="">
-                            <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/social/lion.jpg"
-                                class="rounded h-full" alt="#ok" width="500">
+                            <img src="{{ asset('storage/' . $post->user->photo) }}" class="rounded h-full" alt="#ok"
+                                width="500">
                         </div>
                         <div class="w-full ">
                             <div class=" flex-1 p-10 rounded shadow bg-white w-full">
-                                <a href="#" class="text-red-700 bold">{{ $post->user->name }}</a>
+                                <a href="{{ route('users.show', $post->user->id) }}"
+                                    class="text-red-700 bold">{{ $post->user->name }}</a>
                                 <h1 class="text-3xl">{{ $post->title }}</h1>
                                 <p class="flex justify-between w-full">
-                                    {{ $post->created_at->format('d-m-Y') }}<span
-                                        class="underline">{{ $post->category->name }}</span>
+                                    {{ $post->created_at->format('d-m-Y') }}<a
+                                        href="{{ route('categories.show', $post->category->id) }}"
+                                        class="underline">{{ $post->category->name }}</a>
                                 <p>
                             </div>
                         </div>
                     </div>
-                    <div class="px-20 py-10">
-                        <p>{{ $post->description }}</p>
+                    <div class="px-20 py-10 break overflow-hidden">
+
+                        <p>{{ Str::limit($post->description, 50) }}</p>
+                        <a href="{{ route('posts.show', $post->id) }}" class="text-xl text-blue-600 block mt-3">Read
+                            More..</a>
                     </div>
+
+
+
                 </div>
             @endforeach
         </div>
